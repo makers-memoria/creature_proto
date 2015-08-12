@@ -6,7 +6,7 @@
 
       <div id="speech"  ng-show="myVar"><img src="img/speech-omnomnom.png" /></div>
 
-      <div id="rock" class="pet" ng-drop="true" ng-drop-success="onDropComplete(); eaten=!eaten" ></div>
+      <div id="rock" class="pet" ng-drop="true" ng-drop-success="onDropComplete(); eaten=!eaten; add()"></div>
 
       <div ng-hide="eaten" ng-init="myVar='true'" id="food" ng-repeat="item in food" ng-drag="true" ng-drag-data="item" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
           <img id="item" ng-src="{{item.location}}"/>

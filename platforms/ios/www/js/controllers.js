@@ -1,6 +1,6 @@
-angular.module('starter.controllers', ['ngDraggable', 'firebase'])
+angular.module('starter.controllers', ['ngDraggable', 'firebase', 'ngCordova'])
 
-.controller('PetCtrl', function($scope, Images) {
+.controller('PetCtrl', function($scope, Images, $cordovaLocalNotification) {
   $scope.myVar = false;
   // $scope.creatures = Images.pet();
   $scope.food = Images.foodList();
@@ -18,6 +18,20 @@ angular.module('starter.controllers', ['ngDraggable', 'firebase'])
        $scope.myVar = false;
      });
    }, 1000);
+ };
+ 
+ $scope.add = function() {
+   var now = new Date().getTime();
+   var timeInSeconds = 5
+   _X_sec_from_now = new Date(now + timeInSeconds *1000);
+   $cordovaLocalNotification.schedule({
+     id: 1,
+     title: "<3!",
+     text: "Thanks for feeding me!",
+     at: _X_sec_from_now,
+     sound: 'sub.caf'
+   });
+   console.log('working')
  };
 
 })
@@ -61,7 +75,7 @@ angular.module('starter.controllers', ['ngDraggable', 'firebase'])
   var randomProperty = function (questionsArray) {
     var keys = Object.keys(questionsArray);
     return questionsArray[keys[ keys.length * Math.random() << 0]];
-    }
+  };
 
   ref.on("value", function(snapshot){
     questionsArray = (snapshot.val());
